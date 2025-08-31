@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://o0330e8bbodx"]
+
+[ext_resource type="Script" uid="uid://bfk7gf1m10pyw" path="res://Scenes/Levels/menu.gd" id="1_ieqbc"]
+[ext_resource type="PackedScene" uid="uid://cjanwm3sy2x37" path="res://Scenes/Levels/Level_01.tscn" id="2_efv3v"]
+[ext_resource type="FontFile" uid="uid://bl0a1hgtd2j40" path="res://Assets/Fonts/FuzzyBubbles-Bold.ttf" id="3_d0h0r"]
+[ext_resource type="Texture2D" uid="uid://cjxup506xdk8p" path="res://Backgrounds/backgroundEmpty.png" id="4_fo0dp"]
+[ext_resource type="Texture2D" uid="uid://clw1jk6mpalor" path="res://Backgrounds/Elements/mountains.png" id="5_i0m5b"]
+[ext_resource type="Texture2D" uid="uid://dpvvh6qpd8bh6" path="res://cloud2.png" id="6_v7rm1"]
+[ext_resource type="Texture2D" uid="uid://brpyraxlrblys" path="res://cloud1.png" id="7_ciipc"]
+[ext_resource type="Texture2D" uid="uid://bpe2ou2oaxmyx" path="res://cloud4.png" id="8_yv0mf"]
+[ext_resource type="AudioStream" uid="uid://b1bc3ftsl48f5" path="res://Heaven Pierce Her - ULTRAKILL- INFINITE HYPERDEATH - 21 Take Care.mp3" id="9_efv3v"]
+[ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/1_06_green_hill_zone_act_1.gd" id="10_d0h0r"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_ieqbc")
+next_scene = ExtResource("2_efv3v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 362.0
+offset_top = 277.0
+offset_right = 873.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_d0h0r")
+theme_override_font_sizes/font_size = 64
+text = "My Dream Game"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 674.0
+offset_right = 513.0
+offset_bottom = 755.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_d0h0r")
+theme_override_font_sizes/font_size = 32
+text = "methusmaneewijit © 2025"
+
+[node name="StartButton" type="Button" parent="CanvasLayer"]
+offset_left = 534.0
+offset_top = 446.0
+offset_right = 706.0
+offset_bottom = 500.0
+theme_override_fonts/font = ExtResource("3_d0h0r")
+theme_override_font_sizes/font_size = 36
+text = "START"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+offset_left = 533.0
+offset_top = 520.0
+offset_right = 705.0
+offset_bottom = 574.0
+theme_override_fonts/font = ExtResource("3_d0h0r")
+theme_override_font_sizes/font_size = 36
+text = "QUIT
+"
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.4)
+repeat_size = Vector2(940, 0)
+repeat_times = 2
+
+[node name="BackgroundForest" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(983.26, 251)
+scale = Vector2(0.919668, 0.919668)
+texture = ExtResource("4_fo0dp")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.4)
+repeat_size = Vector2(1024, 0)
+repeat_times = 2
+
+[node name="Mountains" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(1027, 330)
+texture = ExtResource("5_i0m5b")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.6)
+repeat_size = Vector2(2000, 0)
+repeat_times = 2
+
+[node name="Cloud2" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(1596.78, 130.162)
+scale = Vector2(1.18926, 0.511215)
+texture = ExtResource("6_v7rm1")
+
+[node name="Cloud1" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(546.782, 88.162)
+scale = Vector2(0.62947, 0.555058)
+texture = ExtResource("7_ciipc")
+
+[node name="Cloud4" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(985, 202)
+scale = Vector2(1, 0.800512)
+texture = ExtResource("8_yv0mf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_efv3v")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("10_d0h0r")
+
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_quit_button_pressed"]

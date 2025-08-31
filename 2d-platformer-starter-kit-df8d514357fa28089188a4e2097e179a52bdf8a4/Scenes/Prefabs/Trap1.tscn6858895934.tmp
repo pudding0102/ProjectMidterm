@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://q3npjesghtye"]
+
+[ext_resource type="Script" uid="uid://rnk10gfr5kac" path="res://Scenes/Prefabs/trap_1.gd" id="1_gcpjj"]
+[ext_resource type="Texture2D" uid="uid://b7jrm31foyish" path="res://Assets/danger.png" id="2_gyt1j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcpjj"]
+size = Vector2(63, 452)
+
+[sub_resource type="Curve" id="Curve_gyt1j"]
+_data = [Vector2(0, 0.52346), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_h00rm"]
+offsets = PackedFloat32Array(0.25, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_gko8r"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_n00vw"]
+resource_name = "Trap"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Trap/Danger:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Trap/Danger:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.400017, 0.600017, 0.800034, 1.00003, 1.20005, 1.40005, 1.60007, 1.80007),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Trap/Particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 5.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Trap/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 5.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gw7ir"]
+_data = {
+&"RESET": SubResource("Animation_gko8r"),
+&"Trap": SubResource("Animation_n00vw")
+}
+
+[node name="Trap" type="StaticBody2D" node_paths=PackedStringArray("animplayer") groups=["Traps"]]
+script = ExtResource("1_gcpjj")
+animplayer = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -228)
+shape = SubResource("RectangleShape2D_gcpjj")
+disabled = true
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(-1, -3)
+emitting = false
+amount = 200
+lifetime = 2.0
+lifetime_randomness = 0.4
+emission_shape = 2
+emission_sphere_radius = 19.49
+direction = Vector2(0, -1)
+spread = 5.66
+gravity = Vector2(0, 1000)
+initial_velocity_min = 867.0
+initial_velocity_max = 1000.0
+damping_min = 1.0
+damping_max = 1.0
+scale_amount_min = 15.0
+scale_amount_max = 30.0
+scale_amount_curve = SubResource("Curve_gyt1j")
+color = Color(1, 0.380392, 0.443137, 1)
+color_ramp = SubResource("Gradient_h00rm")
+
+[node name="Danger" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(-1, -350)
+texture = ExtResource("2_gyt1j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_gw7ir")
+}
