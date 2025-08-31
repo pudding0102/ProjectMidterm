@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://brpyraxlrblys" path="res://cloud1.png" id="7_ciipc"]
 [ext_resource type="Texture2D" uid="uid://bpe2ou2oaxmyx" path="res://cloud4.png" id="8_yv0mf"]
 [ext_resource type="AudioStream" uid="uid://b1bc3ftsl48f5" path="res://Heaven Pierce Her - ULTRAKILL- INFINITE HYPERDEATH - 21 Take Care.mp3" id="9_efv3v"]
-[ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/1_06_green_hill_zone_act_1.gd" id="10_d0h0r"]
+[ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/gamePlay.gd" id="10_d0h0r"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_ieqbc")

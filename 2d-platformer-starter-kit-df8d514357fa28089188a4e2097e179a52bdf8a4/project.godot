@@ -26,12 +26,12 @@ SceneTransition="*res://Scenes/Managers/SceneTransition.tscn"
 AudioManager="*res://Scenes/Managers/AudioManager.tscn"
 SizeController="*res://Scripts/setting/sizeController.gd"
 GraphicController="*res://Scripts/setting/graphicController.gd"
-AudioController="*res://Scripts/setting/audioController.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]

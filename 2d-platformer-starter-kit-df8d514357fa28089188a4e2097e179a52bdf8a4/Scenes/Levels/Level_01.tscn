@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cr660k65lbsf2" path="res://Assets/Sound/S1_B5.wav" id="11_xpj05"]
 [ext_resource type="PackedScene" uid="uid://jh8r6ohf302t" path="res://Scenes/Prefabs/Checkpoint.tscn" id="12_6jlo1"]
 [ext_resource type="AudioStream" uid="uid://bkshcyh8emhw5" path="res://1.06 Green Hill Zone Act 1.mp3" id="12_aksfc"]
-[ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/1_06_green_hill_zone_act_1.gd" id="13_5pmb1"]
+[ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/gamePlay.gd" id="13_5pmb1"]
 [ext_resource type="Texture2D" uid="uid://cla0tfn00uo4h" path="res://skull-and-crossbones_2620.png" id="17_07uvp"]
 [ext_resource type="Texture2D" uid="uid://5fghyx1r3cx0" path="res://Assets/key.png" id="18_6jlo1"]
 

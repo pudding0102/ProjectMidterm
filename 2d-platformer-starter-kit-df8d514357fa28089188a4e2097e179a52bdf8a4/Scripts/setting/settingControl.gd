@@ -18,16 +18,7 @@ var size_bn: Array
 @onready var bn_small: Button = $VBoxContainer/sizeSet/sizeVboxContainer/sizeHBoxContainer/bn_small
 
 func _ready():
-	'''
-	#ตั้งค่า Audio sliders
-	if AudioController:
-		music_slider.value = AudioController.get_music_volume() * 100
-		sfx_slider.value = AudioController.get_sfx_volume() * 100
-		
-		#เชื่อมต่อ signal โดยอัตโนมัติ
-		music_slider.value_changed.connect(_on_music_slider_value_changed)
-		sfx_slider.value_changed.connect(_on_sfx_slider_value_changed)
-	'''
+	
 	grap_bn = [bn_high, bn_medium_grap, bn_low]
 	size_bn = [bn_large, bn_mudium_size, bn_small]
 	
@@ -57,16 +48,15 @@ func _ready():
 				set_active(grap_bn, bn_high)
 				# เปลี่ยนเป็นการเรียก static function ผ่าน class
 				bn_high.text = GraphicController.get_quality_name(GraphicController.GraphicsQuality.HIGH)
-'''
+
 #Music
 func _on_music_slider_value_changed(value: float) -> void:
-	AudioController.set_music_volume(value/100)
+	pass
 
 #SFX
 func _on_sfx_slider_value_changed(value: float) -> void:
-	AudioController.set_sfx_volume(value/100)
-'''
-	
+	pass
+		
 #Graphic pressed
 func _on_bn_high_pressed() -> void:
 	set_active(grap_bn, bn_high)
@@ -96,10 +86,11 @@ func _on_bn_small_pressed() -> void:
 	SizeController.set_window_size(SizeController.WindowSize.SMALL)
 	SizeController.save_settings()
 		
-func _on_exit_bn_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Managers/gameMenu.tscn")
 	
 #จัดการปุ่มในกลุ่ม
 func set_active(buttons: Array, active_button: Button):
 	for btn in buttons:
 		btn.button_pressed = (btn == active_button)
+
+func _on_bn_exit_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Managers/gameMenu.tscn")

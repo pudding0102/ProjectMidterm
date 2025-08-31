@@ -1,14 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://df3mrrupmhybr"]
 
-[ext_resource type="Script" uid="uid://buetax5w5g2ck" path="res://Scripts/setting/settingControl.gd" id="1_o1lnw"]
+[ext_resource type="Script" uid="uid://bkbnuxloo61r7" path="res://Scripts/setting/settingControl.gd" id="1_o1lnw"]
 [ext_resource type="Texture2D" uid="uid://ccliwqkwm2nbf" path="res://Backgrounds/Icon/exitIcon.png" id="2_o1lnw"]
 [ext_resource type="FontFile" uid="uid://cowbqlvf83euj" path="res://Assets/Fonts/Star Choco.ttf" id="3_yhl48"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6i0g"]
 bg_color = Color(0.0784314, 0.0784314, 0.0784314, 0.8)
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_hx4qo"]
-color = Color(0, 0, 0, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_425l1"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_pttal"]
 color = Color(1, 1, 1, 1)
@@ -41,26 +40,27 @@ color = Color(0, 0, 0, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.93671
-offset_top = 0.80246
-offset_right = 649.937
-offset_bottom = 402.802
+offset_right = 556.0
+offset_bottom = 343.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_l6i0g")
 script = ExtResource("1_o1lnw")
 
-[node name="exit_bn" type="Button" parent="."]
+[node name="bn_exit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -254.0
+offset_left = -368.0
 offset_bottom = 216.0
 grow_horizontal = 0
-theme_override_styles/focus = SubResource("StyleBoxLine_hx4qo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_425l1")
 icon = ExtResource("2_o1lnw")
 flat = true
+icon_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -251,7 +251,7 @@ button_group = SubResource("ButtonGroup_cdpvn")
 text = "SMALL"
 flat = true
 
-[connection signal="pressed" from="exit_bn" to="." method="_on_exit_bn_pressed"]
+[connection signal="pressed" from="bn_exit" to="." method="_on_bn_exit_pressed"]
 [connection signal="value_changed" from="VBoxContainer/soundSet/musicContainer/musicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/soundSet/gameSoundContainer/sfxSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ghapSet/ghapVboxContainer/ghapHBoxContainer/bn_high" to="." method="_on_bn_high_pressed"]
