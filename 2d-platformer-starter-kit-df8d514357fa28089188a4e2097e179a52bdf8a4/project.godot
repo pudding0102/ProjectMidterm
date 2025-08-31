@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="game04_673380300-2"
+config/name="2DGame"
 config/tags=PackedStringArray("starterkit")
-run/main_scene="uid://o0330e8bbodx"
+run/main_scene="uid://dayt3v5x7n02v"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.105882, 0.458824, 0.733333, 1)
 boot_splash/image="res://Assets/Splash/2D Platformer Starter Kit Splash.png"
@@ -24,13 +24,15 @@ run/name="game04_673380300-2"
 GameManager="*res://Scripts/GameManager.gd"
 SceneTransition="*res://Scenes/Managers/SceneTransition.tscn"
 AudioManager="*res://Scenes/Managers/AudioManager.tscn"
+SizeController="*res://Scripts/setting/sizeController.gd"
+GraphicController="*res://Scripts/setting/graphicController.gd"
+AudioController="*res://Scripts/setting/audioController.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -61,3 +63,4 @@ Jump={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/default_filters/use_nearest_filter=false

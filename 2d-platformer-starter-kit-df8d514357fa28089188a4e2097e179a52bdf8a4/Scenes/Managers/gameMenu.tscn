@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://dayt3v5x7n02v"]
+
+[ext_resource type="Script" uid="uid://bh5sdkke2itwm" path="res://Scripts/setting/main.gd" id="1_nkwo4"]
+[ext_resource type="Texture2D" uid="uid://doj7oyxcb01oy" path="res://Backgrounds/Elements/Desktop.png" id="2_51bav"]
+[ext_resource type="Texture2D" uid="uid://deg7sc6locakq" path="res://Backgrounds/Icon/Logo_text.png" id="3_1s2ga"]
+[ext_resource type="FontFile" uid="uid://cowbqlvf83euj" path="res://Assets/Fonts/Star Choco.ttf" id="4_b0q8a"]
+[ext_resource type="PackedScene" uid="uid://df3mrrupmhybr" path="res://Scenes/Managers/settingMenu.tscn" id="5_ekmey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jjvhh"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nkwo4")
+
+[node name="Design" type="Sprite2D" parent="."]
+position = Vector2(641.968, 361.401)
+scale = Vector2(0.6667, 0.667776)
+texture = ExtResource("2_51bav")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Design"]
+
+[node name="MainMenu" type="Panel" parent="Design/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jjvhh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Design/CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Design/CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("3_1s2ga")
+
+[node name="ButtonMainMunu" type="VBoxContainer" parent="Design/CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="bn_start" type="Button" parent="Design/CanvasLayer/MainMenu/VBoxContainer/ButtonMainMunu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b0q8a")
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="bn_setting" type="Button" parent="Design/CanvasLayer/MainMenu/VBoxContainer/ButtonMainMunu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b0q8a")
+theme_override_font_sizes/font_size = 40
+text = "Setting"
+
+[node name="bn_exit" type="Button" parent="Design/CanvasLayer/MainMenu/VBoxContainer/ButtonMainMunu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b0q8a")
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="settingMenu" parent="Design" instance=ExtResource("5_ekmey")]
+visible = false
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+script = null
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="pressed" from="Design/CanvasLayer/MainMenu/VBoxContainer/ButtonMainMunu/bn_start" to="." method="_on_bn_start_pressed"]
+[connection signal="pressed" from="Design/CanvasLayer/MainMenu/VBoxContainer/ButtonMainMunu/bn_setting" to="." method="_on_bn_setting_pressed"]
+[connection signal="pressed" from="Design/CanvasLayer/MainMenu/VBoxContainer/ButtonMainMunu/bn_exit" to="." method="_on_bn_exit_pressed"]
