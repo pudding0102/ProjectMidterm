@@ -18,6 +18,13 @@ var size_bn: Array
 @onready var bn_small: Button = $VBoxContainer/sizeSet/sizeVboxContainer/sizeHBoxContainer/bn_small
 
 func _ready():
+	#แสดงค่า volume ปัจจุบัน
+	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))) * 50
+	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))) * 50
+	
+	#เชื่อมต่อ signals
+	music_slider.value_changed.connect(_on_music_slider_value_changed)
+	sfx_slider.value_changed.connect(_on_sfx_slider_value_changed)
 	
 	grap_bn = [bn_high, bn_medium_grap, bn_low]
 	size_bn = [bn_large, bn_mudium_size, bn_small]
@@ -51,11 +58,13 @@ func _ready():
 
 #Music
 func _on_music_slider_value_changed(value: float) -> void:
-	pass
+	var db_value = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), db_value)
 
 #SFX
 func _on_sfx_slider_value_changed(value: float) -> void:
-	pass
+	var db_value = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), db_value)
 		
 #Graphic pressed
 func _on_bn_high_pressed() -> void:
