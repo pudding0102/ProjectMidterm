@@ -1,7 +1,7 @@
 extends State
 
 func enter():
-	player.player_spirte.play("Idle")
+	player.player_sprite.play("Idle")
 
 func physics_update(delta):
 	player.movement(delta)

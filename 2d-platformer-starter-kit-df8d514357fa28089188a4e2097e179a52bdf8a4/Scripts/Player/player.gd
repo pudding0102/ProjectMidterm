@@ -16,7 +16,7 @@ var is_grounded : bool = false
 var ground_time : float = 0.0
 var step_time : float = 0.0
 
-@onready var player_sprite = $Pockie
+@onready var player_sprite = $AnimatedSprite2D
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
@@ -24,15 +24,19 @@ var step_time : float = 0.0
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 func _ready():
-	#ตั้งค่า reference ให้ state machine
-	for state in state_machine.get_children():
-		state.player = self
+	# ตรวจสอบว่า state_machine มีอยู่
+	if state_machine:
+		for state in state_machine.get_children():
+			state.player = self  # ตั้งค่า reference
+	else:
+		print("StateMachine not found!")
 
 func _physics_process(_delta):
 	movement(_delta)
 	handle_jumping()
 	move_and_slide()
 	flip_player()
+	
 	
 # --------- CUSTOM FUNCTIONS ---------- #
 

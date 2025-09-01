@@ -18,17 +18,15 @@ var size_bn: Array
 @onready var bn_small: Button = $VBoxContainer/sizeSet/sizeVboxContainer/sizeHBoxContainer/bn_small
 
 func _ready():
-	#แสดงค่า volume ปัจจุบัน
-	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))) * 20
-	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))) * 20
+	#ลบการเชื่อมต่อเก่าก่อนเชื่อมต่อใหม่
+	if music_slider.value_changed.is_connected(_on_music_slider_value_changed):
+		music_slider.value_changed.disconnect(_on_music_slider_value_changed)
+	if sfx_slider.value_changed.is_connected(_on_sfx_slider_value_changed):
+		sfx_slider.value_changed.disconnect(_on_sfx_slider_value_changed)
 	
-	#เชื่อมต่อ signals
+	#เชื่อมต่อ signals ใหม่
 	music_slider.value_changed.connect(_on_music_slider_value_changed)
 	sfx_slider.value_changed.connect(_on_sfx_slider_value_changed)
-	
-	grap_bn = [bn_high, bn_medium_grap, bn_low]
-	size_bn = [bn_large, bn_mudium_size, bn_small]
-	
 	#ตั้งค่า Size scene
 	if SizeController:
 		match SizeController.current_size:

@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var main_menu: Panel = $Design/CanvasLayer/MainMenu
 @onready var setting_menu: Panel = $Design/settingMenu
-@onready var panel: Panel = $Design/Panel
 
 # test
 

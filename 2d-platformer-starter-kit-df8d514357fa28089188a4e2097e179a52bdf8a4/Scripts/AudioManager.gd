@@ -1,6 +1,5 @@
-# This script is an autoload, that can be accessed from any other script!
-
 extends Node
+const CONFIG_PATH = "user://audio_settings.cfg"
 
 @onready var jump_sfx = $JumpSfx
 @onready var coin_pickup_sfx = $CoinPickup

@@ -1,7 +1,7 @@
 extends State
 
 func enter():
-	player.player_spirt.play("Death")
+	player.player_sprite.play("Death")
 	player.velocity = Vector2.ZERO
 	player.death_tween()
 	

@@ -1,7 +1,7 @@
 extends State
 
 func enter():
-	player.player_spirte.play("Walk")
+	player.player_sprite.play("Walk")
 
 func physics_update(delta):
 	#gravity และ movement

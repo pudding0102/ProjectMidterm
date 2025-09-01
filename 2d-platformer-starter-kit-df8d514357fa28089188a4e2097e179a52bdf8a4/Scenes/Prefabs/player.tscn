@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=56 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" uid="uid://cu72gfvicvojs" path="res://Scripts/Player/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://cbss87b7xk5lc" path="res://Assets/Spritesheet/platformerPack_character.png" id="2_q0cxm"]
@@ -14,11 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://crhhg86k7cyx8" path="res://Assets/Spritesheet/death.png" id="11_qapsg"]
 [ext_resource type="Texture2D" uid="uid://7iu3no3fotv6" path="res://Assets/Spritesheet/jump.png" id="12_qapsg"]
 [ext_resource type="Texture2D" uid="uid://cilrkgkx46gei" path="res://Assets/Spritesheet/walk.png" id="13_eejau"]
-[ext_resource type="Script" uid="uid://capc4vu8d3hcg" path="res://Scripts/Player/State/StateMachine_Controller.gd" id="15_eejau"]
-[ext_resource type="Script" uid="uid://dny0ncdna5u3k" path="res://Scripts/Player/State/Idle_state.gd" id="16_33gpj"]
-[ext_resource type="Script" uid="uid://c8aufw25s341h" path="res://Scripts/Player/State/Walk_state.gd" id="17_5us4r"]
-[ext_resource type="Script" uid="uid://mmrvax68efqy" path="res://Scripts/Player/State/Death_state.gd" id="18_dfo05"]
-[ext_resource type="Script" uid="uid://ot72ynp4b6qs" path="res://Scripts/Player/State/Jump_state.gd" id="19_imxsi"]
+[ext_resource type="PackedScene" uid="uid://cj33we63kkopl" path="res://Scenes/Managers/state_machine.tscn" id="15_eejau"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57bci"]
 atlas = ExtResource("2_q0cxm")
@@ -1559,19 +1555,6 @@ shape = SubResource("RectangleShape2D_tvbjh")
 position = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_n4sts")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("15_eejau")
-
-[node name="Idle_state" type="Node" parent="StateMachine"]
-script = ExtResource("16_33gpj")
-
-[node name="Walk_state" type="Node" parent="StateMachine"]
-script = ExtResource("17_5us4r")
-
-[node name="Death_state" type="Node" parent="StateMachine"]
-script = ExtResource("18_dfo05")
-
-[node name="Jump_state" type="Node" parent="StateMachine"]
-script = ExtResource("19_imxsi")
+[node name="StateMachine" parent="." instance=ExtResource("15_eejau")]
 
 [connection signal="body_entered" from="Pockie/Collision" to="." method="_on_collision_body_entered"]

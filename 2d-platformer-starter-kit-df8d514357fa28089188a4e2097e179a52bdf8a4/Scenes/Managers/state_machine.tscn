@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj33we63kkopl"]
+
+[ext_resource type="Script" uid="uid://capc4vu8d3hcg" path="res://Scripts/Player/State/StateMachine_Controller.gd" id="1_eerdn"]
+[ext_resource type="Script" uid="uid://dny0ncdna5u3k" path="res://Scripts/Player/State/Idle_state.gd" id="2_6n3w3"]
+[ext_resource type="Script" uid="uid://c8aufw25s341h" path="res://Scripts/Player/State/Walk_state.gd" id="3_1r77w"]
+[ext_resource type="Script" uid="uid://mmrvax68efqy" path="res://Scripts/Player/State/Death_state.gd" id="4_05ydh"]
+[ext_resource type="Script" uid="uid://ot72ynp4b6qs" path="res://Scripts/Player/State/Jump_state.gd" id="5_81d1w"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_eerdn")
+
+[node name="Idle_state" type="Node" parent="."]
+script = ExtResource("2_6n3w3")
+
+[node name="Walk_state" type="Node" parent="."]
+script = ExtResource("3_1r77w")
+
+[node name="Death_state" type="Node" parent="."]
+script = ExtResource("4_05ydh")
+
+[node name="Jump_state" type="Node" parent="."]
+script = ExtResource("5_81d1w")
