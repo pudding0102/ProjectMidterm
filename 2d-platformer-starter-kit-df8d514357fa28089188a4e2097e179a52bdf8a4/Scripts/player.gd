@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @export_category("Player Properties")
 @export var move_speed : float = 300
-@export var jump_force : float = 1000
+@export var jump_force : float = 500
 @export var gravity : float = 1200
 @export var max_jump_count : int = 2
 var jump_count : int = 2

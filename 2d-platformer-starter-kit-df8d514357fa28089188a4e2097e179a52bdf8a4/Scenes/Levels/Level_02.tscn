@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=4 uid="uid://bjb3dx2x4bocm"]
+[gd_scene load_steps=33 format=4 uid="uid://bjb3dx2x4bocm"]
 
 [ext_resource type="AudioStream" uid="uid://cn7f3bqxbnwxd" path="res://1.10 Studiopolis Zone Act 1.mp3" id="1_6mkr2"]
+[ext_resource type="Script" uid="uid://f86hquwpx5p3" path="res://Scenes/Levels/level_01.gd" id="1_ideh1"]
 [ext_resource type="Texture2D" uid="uid://riklokip73kp" path="res://Assets/1.png" id="1_lvv4x"]
 [ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/gamePlay.gd" id="2_2mo40"]
 [ext_resource type="Texture2D" uid="uid://cykdiq0eadcjy" path="res://Assets/2.png" id="2_jlrok"]
@@ -132,6 +133,7 @@ sources/1 = SubResource("TileSetAtlasSource_jlrok")
 size = Vector2(73, 207)
 
 [node name="Level_02" type="Node2D"]
+script = ExtResource("1_ideh1")
 
 [node name="1_10StudiopolisZoneAct1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_6mkr2")
