@@ -1,17 +1,13 @@
-extends "res://Scripts/Player/State/State.gd"
+extends State
 
 func enter():
-	$Death.play()
-	player.death_parickes.emitting = true
+	player.player_spirt.play("Death")
+	player.velocity = Vector2.ZERO
 	player.death_tween()
 	
-	#หยุดการเคลื่อนที่
-	player.velocity = Vector2.ZERO
+	#ผู้เล่นไม่สามารถเคลื่อนไหวได้
 	player.set_physics_process(false)
-	
-func update(dealta : float):
-	pass
-	
+
 func exit():
 	player.set_physics_process(true)
 	

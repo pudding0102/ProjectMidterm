@@ -7,8 +7,16 @@ extends Node2D
 # test
 
 func _ready() -> void:
-	main_menu.visible = true
-	setting_menu.visible = false
+	if main_menu:
+		main_menu.visible = true
+	else:
+		print("Main menu not found!")
+		
+	if setting_menu:
+		setting_menu.visible = false
+	else:
+		print("Setting menu not found!")
+		
 	SizeController.apply_size(SizeController.current_size)
 	
 

@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 # --------- VARIABLES ---------- #
 @export_category("Player Properties")
-@export var move_speed : float = 300
-@export var jump_force : float = 500
-@export var gravity : float = 1200
+const SPEED = 300.0
+const JUMP_FORCE = -400.0
+const GRAVITY = 980.0
+
 @export var max_jump_count : int = 2
 var jump_count : int = 2
 
@@ -12,11 +13,10 @@ var jump_count : int = 2
 @export var double_jump : bool = false
 
 var is_grounded : bool = false
-
 var ground_time : float = 0.0
 var step_time : float = 0.0
 
-@onready var player_sprite = $AnimatedSprite2D
+@onready var player_sprite = $Pockie
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
@@ -24,31 +24,31 @@ var step_time : float = 0.0
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 func _ready():
+	#ตั้งค่า reference ให้ state machine
 	for state in state_machine.get_children():
-		if state.has_method("set_player_references"):
-			state.set_player_references(self, player_sprite)
+		state.player = self
 
-func _physics_process(delta):
-	state_machine._physics_process(delta)
-	flip_player()
+func _physics_process(_delta):
+	movement(_delta)
+	handle_jumping()
 	move_and_slide()
+	flip_player()
 	
 # --------- CUSTOM FUNCTIONS ---------- #
 
 func movement(delta):
-	# Gravity
+	#Gravity
 	if !is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += GRAVITY * delta
 		ground_time = 0
+		
 	elif is_on_floor():
 		jump_count = max_jump_count
 		ground_time += delta
-	handle_jumping()
 	
 	# Move Player
 	var inputAxis = Input.get_axis("Left", "Right")
-	velocity.x = inputAxis * move_speed
-	move_and_slide()
+	velocity.x = inputAxis * SPEED
 	
 func handle_jumping():
 	if Input.is_action_just_pressed("Jump"):
@@ -59,7 +59,7 @@ func handle_jumping():
 			jump_count -= 1
 		
 func jump():
-	velocity.y = -jump_force
+	velocity.y = JUMP_FORCE
 	
 func play_random_step_sound():
 	var step = randi_range(1,4)
@@ -95,11 +95,27 @@ func jump_tween():
 	tween.tween_property(self, "scale", Vector2(0.7, 1.4), 0.1)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
 
+# --------- Update Animetion ---------- #
+
+func update_animation():
+	if !is_on_floor():
+		player_sprite.play("jump")
+	elif abs(velocity.x) > 0:
+		player_sprite.play("walk")
+	else:
+		player_sprite.play("idle")
+
 # --------- SIGNALS ---------- #
 
 func _on_collision_body_entered(_body):
 	if (_body.is_in_group("Enemy") and ground_time > 0.1) or _body.is_in_group("Traps"):
-		GameManager.add_death()
-		$Death.play()
-		death_particles.emitting = true
-		death_tween()
+		die()
+
+func die():
+	GameManager.add_death()
+	$Death.play()
+	death_particles.emitting = true
+	death_tween()
+	#ส่ง signal ไป state machine เพื่อเปลี่ยน state
+	if state_machine.has_method("change_state"):
+		state_machine.change_state("Death_state")

@@ -1,31 +1,24 @@
-extends "res://Scripts/Player/State/State.gd"
+extends State
 
 func enter():
-	ani_player.play("Walk")
-	player.particle_trails.emitting = true
+	player.player_spirte.play("Walk")
+
+func physics_update(delta):
+	#gravity และ movement
+	player.movement(delta)
+	player.handle_jumping()
 	
-func update(dealta : float):
-	#เปลี่ยนเป็น Idle
-	var input_axis = Input.get_axis("Left", "Right")
-	if abs(input_axis) == 0 :
-		transition_requested.emit("Idle")
-		return
-		
-	#กระโดดเมื่อกดปุ่ม	
-	if Input.is_action_pressed("Jump") and player.is_on_floor():
-		transition_requested.emit("Jump")
-		return
-		
-	if !player.is_on_floor():
-		transition_requested.emit("Jump")
-		return
-		
+	#Step sound
 	if player.is_on_floor():
-		player.step_time += dealta *3
+		player.step_time += delta * 3
 		if player.step_time >= 1:
 			player.play_random_step_sound()
 			player.step_time = 0
 			
-			
-func exit():
-	player.particle_trails.emittimg = false
+	#เปลี่ยน state
+	var input_axis = Input.get_axis("Left", "Right")
+	if abs(input_axis) == 0:
+		change_state.emit("Idle")
+	
+	if !player.is_on_floor():
+		change_state.emit("Jump")

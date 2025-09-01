@@ -19,8 +19,8 @@ var size_bn: Array
 
 func _ready():
 	#แสดงค่า volume ปัจจุบัน
-	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))) * 50
-	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))) * 50
+	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))) * 20
+	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))) * 20
 	
 	#เชื่อมต่อ signals
 	music_slider.value_changed.connect(_on_music_slider_value_changed)
