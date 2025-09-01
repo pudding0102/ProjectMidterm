@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 [gd_scene load_steps=34 format=4 uid="uid://bjb3dx2x4bocm"]
+=======
+[gd_scene load_steps=33 format=4 uid="uid://bjb3dx2x4bocm"]
+>>>>>>> 0470ca3bd1442ca73dc66c74c1ad60d52fca9f81
 
-[ext_resource type="AudioStream" uid="uid://cn7f3bqxbnwxd" path="res://1.10 Studiopolis Zone Act 1.mp3" id="1_6mkr2"]
+[ext_resource type="AudioStream" uid="uid://cn7f3bqxbnwxd" path="res://Level3/1.10 Studiopolis Zone Act 1.mp3" id="1_6mkr2"]
 [ext_resource type="Texture2D" uid="uid://riklokip73kp" path="res://Assets/1.png" id="1_lvv4x"]
 [ext_resource type="Script" uid="uid://drsk85qfy2heg" path="res://Scenes/Levels/gamePlay.gd" id="2_2mo40"]
 [ext_resource type="Texture2D" uid="uid://cykdiq0eadcjy" path="res://Assets/2.png" id="2_jlrok"]
@@ -23,8 +27,13 @@
 [ext_resource type="PackedScene" uid="uid://bklbtooyxult4" path="res://Scenes/Prefabs/Trap2.tscn" id="17_l1023"]
 [ext_resource type="PackedScene" uid="uid://ceuflq0w1q172" path="res://Scenes/Prefabs/Key.tscn" id="17_u1l2o"]
 [ext_resource type="Texture2D" uid="uid://cla0tfn00uo4h" path="res://skull-and-crossbones_2620.png" id="19_8k45j"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://d300dv87vtj3t" path="res://Scenes/Prefabs/LevelFinishDoor2.tscn" id="22_ijm6r"]
 [ext_resource type="Script" uid="uid://dropcg4hxodr5" path="res://Level3/level3Scripts/control.gd" id="25_ideh1"]
+=======
+[ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="24_ideh1"]
+[ext_resource type="PackedScene" uid="uid://cg8qad5stihua" path="res://Level3/level3scene/level_03.tscn" id="25_leegk"]
+>>>>>>> 0470ca3bd1442ca73dc66c74c1ad60d52fca9f81
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6mkr2"]
 texture = ExtResource("9_jlrok")
@@ -213,9 +222,6 @@ repeat_times = 3
 position = Vector2(710, 286)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_6ihmv")
-
-[node name="LevelFinishDoor2" parent="." instance=ExtResource("22_ijm6r")]
-position = Vector2(14797, 464)
 
 [node name="Player" parent="." instance=ExtResource("2_lpo2y")]
 z_index = 1
@@ -515,6 +521,7 @@ expand_mode = 1
 [node name="Coin" type="AudioStreamPlayer" parent="UserInterface/GameUI"]
 stream = ExtResource("8_ombkc")
 
+<<<<<<< HEAD
 [node name="Control" type="Control" parent="UserInterface"]
 layout_mode = 3
 anchors_preset = 0
@@ -536,5 +543,10 @@ text = "00"
 label_settings = SubResource("LabelSettings_leegk")
 
 [node name="Timer" type="Timer" parent="UserInterface/Control"]
+=======
+[node name="LevelFinishDoor" parent="." instance=ExtResource("24_ideh1")]
+position = Vector2(14749, 464)
+next_scene = ExtResource("25_leegk")
+>>>>>>> 0470ca3bd1442ca73dc66c74c1ad60d52fca9f81
 
 [connection signal="body_entered" from="Level/Area2D" to="Level/Area2D" method="_on_body_entered"]
