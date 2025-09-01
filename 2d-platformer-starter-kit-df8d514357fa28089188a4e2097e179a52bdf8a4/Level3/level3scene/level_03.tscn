@@ -966,8 +966,6 @@ offset_bottom = 87.0
 script = ExtResource("18_6x5vj")
 label_path = NodePath("TimeLabel")
 timer_path = NodePath("Timer")
-player_path = NodePath("../../Player")
-spawnpoint_path = NodePath("../../Level/SpawnPoint")
 
 [node name="TimeLabel" type="Label" parent="UserInterface/Control"]
 layout_mode = 0

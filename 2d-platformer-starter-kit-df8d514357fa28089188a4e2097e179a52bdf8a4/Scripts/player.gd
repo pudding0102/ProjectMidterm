@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 # --------- VARIABLES ---------- #
-
 @export_category("Player Properties")
 @export var move_speed : float = 300
 @export var jump_force : float = 1000
@@ -12,8 +11,10 @@ var jump_count : int = 2
 @export_category("Toggle Functions")
 @export var double_jump : bool = false
 
-var is_grounded : bool = false
+# เพิ่มตัวแปรสำหรับตรวจสอบตกแมพ
+@export var fall_death_height : float = 1000.0  # ความสูงที่ถือว่าตกแมพ
 
+var is_grounded : bool = false
 var ground_time = 0.0
 var step_time = 0.0
 
@@ -24,14 +25,51 @@ var step_time = 0.0
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 
+func _ready():
+	# ตรวจสอบว่ามี spawn_point หรือไม่
+	if not spawn_point:
+		spawn_point = self  # ถ้าไม่มีให้ใช้ตำแหน่งเริ่มต้นของตัวละคร
+
 func _process(delta):
 	movement(delta)
 	player_animations()
 	flip_player()
 	
-	# ตัดแรงกระโดดเมื่อปล่อยปุ่ม (ทำให้คุมความสูงกระโดดได้)
+	# ตรวจสอบการตกแมพ
+	check_fall_death()
+	
+	# ตัดแรงกระโดดเมื่อปล่อยปุ่ม
 	if Input.is_action_just_released("Jump") and velocity.y < -200:
 		velocity.y = -200
+
+# --------- ฟังก์ชันตรวจสอบตกแมพ ---------- #
+
+func check_fall_death():
+	# ตรวจสอบว่าตัวละครตกจากแมพหรือไม่
+	if global_position.y > fall_death_height:
+		handle_fall_death()
+
+func handle_fall_death():
+	GameManager.add_death()
+	$Death.play()
+	death_particles.emitting = true
+	respawn()
+
+# --------- ฟังก์ชัน respawn ---------- #
+
+func respawn():
+	# ย้ายกลับไปที่ spawn point
+	if spawn_point:
+		global_position = spawn_point.global_position
+	else:
+		# ถ้าไม่มี spawn point ให้ย้ายไปที่ตำแหน่ง (0, 0)
+		global_position = Vector2.ZERO
+	
+	# รีเซ็ต velocity
+	velocity = Vector2.ZERO
+	
+	# รีเซ็ต animation
+	scale = Vector2.ONE
 
 # --------- CUSTOM FUNCTIONS ---------- #
 
@@ -43,15 +81,7 @@ func movement(delta):
 	elif is_on_floor():
 		jump_count = max_jump_count
 		if ground_time == 0:
-			var step = randi_range(1,4)
-			if step == 1:
-				$Step.play()
-			elif step == 2:
-				$Step2.play()
-			elif step == 3:
-				$Step3.play()
-			else:
-				$Step4.play()
+			play_step_sound()
 		ground_time += delta
 	
 	handle_jumping()
@@ -64,16 +94,16 @@ func movement(delta):
 	if inputAxis != 0 and is_on_floor():
 		step_time += delta * 3
 	if step_time >= 1:
-		var step = randi_range(1,4)
-		if step == 1:
-			$Step.play()
-		elif step == 2:
-			$Step2.play()
-		elif step == 3:
-			$Step3.play()
-		else:
-			$Step4.play()
+		play_step_sound()
 		step_time = 0
+
+func play_step_sound():
+	var step = randi_range(1,4)
+	match step:
+		1: $Step.play()
+		2: $Step2.play()
+		3: $Step3.play()
+		4: $Step4.play()
 
 func handle_jumping():
 	if Input.is_action_just_pressed("Jump"):
