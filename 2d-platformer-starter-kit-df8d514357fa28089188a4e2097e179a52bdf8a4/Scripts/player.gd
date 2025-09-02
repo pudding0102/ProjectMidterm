@@ -12,7 +12,7 @@ var jump_count : int = 2
 @export var double_jump : bool = false
 
 # เพิ่มตัวแปรสำหรับตรวจสอบตกแมพ
-@export var fall_death_height : float = 1000.0  # ความสูงที่ถือว่าตกแมพ
+@export var fall_death_height : float  # ความสูงที่ถือว่าตกแมพ
 
 var is_grounded : bool = false
 var ground_time = 0.0
