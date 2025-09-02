@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnthl1agu4g16"]
+
+[ext_resource type="Script" uid="uid://clnjqgmrvclv0" path="res://Level3/level3Scripts/portal.gd" id="1_3rwnt"]
+[ext_resource type="Texture2D" uid="uid://dnvl7iobea1ir" path="res://Level3/level3element/Wrap1.png" id="1_btu6q"]
+[ext_resource type="AudioStream" uid="uid://c66ntp7uwsj8n" path="res://Level3/Sound3/teleport-14639.mp3" id="4_66hxx"]
+[ext_resource type="Texture2D" uid="uid://coguuei0y38kp" path="res://Level3/levelbackground/images.jpg" id="4_akuax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6jjt"]
+size = Vector2(113, 149)
+
+[node name="portal" type="Area2D"]
+scale = Vector2(0.45, 0.45)
+script = ExtResource("1_3rwnt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_btu6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 15.5)
+shape = SubResource("RectangleShape2D_l6jjt")
+
+[node name="Destination" type="Marker2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-4.44444, 8.88889)
+texture = ExtResource("4_akuax")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_66hxx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

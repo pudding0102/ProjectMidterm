@@ -68,4 +68,4 @@ ESC={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
-2d/default_filters/use_nearest_filter=false
+2d/default_filters/use_nearest_filter=true
